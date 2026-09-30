@@ -2,9 +2,9 @@ server:
   port: 8085
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:mall4j-mysql}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:yami_shops}?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
-    username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://${MYSQL_HOST:mysql.kube-mall.svc.cluster.local}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:yami_shops}?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+    username: ${MYSQL_USERNAME:mall4j}
+    password: ${MYSQL_PASSWORD:Mall@123456}
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -15,9 +15,10 @@ spring:
       connection-test-query: SELECT 1
   data:
     redis:
-      host: ${REDIS_HOST:mall4j-redis}
+      host: ${REDIS_HOST:redis.kube-mall.svc.cluster.local}
       port: ${REDIS_PORT:6379}
       database: ${REDIS_DATABASE:0}
+      password: ${SPRING_DATA_REDIS_PASSWORD:${REDIS_PASSWORD:Redis@123}}
 logging:
   config: classpath:logback/logback-prod.xml
 xxl-job:
